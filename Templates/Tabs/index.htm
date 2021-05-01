@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../_common/_doc_files/css/global.css">
     <link rel="stylesheet" type="text/css" href="../_common/_doc_files/prism.css">
+    <link rel="stylesheet" type="text/css" href="../_common/_doc_files/css/components-style.css">
     <script type="text/javascript" src="../_common/_doc_files/prism.js"></script>
 </head>
 
@@ -32,7 +33,7 @@
                         <li><a href="Internal - Straylight/index.htm">Internal - Straylight</a></li>
                     </ul>
                 </nav>
-                <section>
+                <section class="section--instructions">
 
                     <h2>Expected behaviors</h2>
 
@@ -60,9 +61,9 @@
                     <p>Available attributes for the triggering element:</p>
 
                     <ul>
-                        <li> controls : The resource path and pointer to the ID attribute of the tab content container element.</li>
-                        <li> root : The ID attribute of the container element where the tab content will be inserted when rendered. (This must not be inside the triggering element)</li>
-                        <li> active : Specifies that the referenced tab node will open automatically. Only one tab node per group should include this attribute.</li>
+                        <li> data-controls : The resource path and pointer to the ID attribute of the tab content container element.</li>
+                        <li> data-root : The ID attribute of the container element where the tab content will be inserted when rendered. (This must not be inside the triggering element)</li>
+                        <li> data-active : Specifies that the referenced tab node will open automatically. Only one tab node per group should include this attribute.</li>
                     </ul>
 
                     <p>IMPORTANT: The triggering element must not include any other active elements, otherwise these will not be accessible to non-sighted screen reader users.</p>
@@ -199,19 +200,25 @@ DC.remove(function() {
                     <h2>Resources</h2>
                     <ul>
                         <li>
-                            <a target="github" href="https://github.com/WhatSock/apex">Apex 4X on GitHub</a>
+                            <a target="ext" href="https://github.com/WhatSock/apex">Apex 4X on GitHub</a>
                         </li>
                         <li>
-                            <a target="github" href="https://accdc.github.io/visual-aria/github-bookmarklet/visual-aria.htm">Visual ARIA Bookmarklet</a>
+                            <a target="ext" href="http://whatsock.com/training/matrices/visual-aria.htm">Visual ARIA Bookmarklet</a>
                         </li>
                         <li>
-                            <a target="github" href="https://chrome.google.com/webstore/detail/visual-aria/lhbmajchkkmakajkjenkchhnhbadmhmk">Chrome Plugin</a>
+                            <a target="ext" href="https://chrome.google.com/webstore/detail/visual-aria/lhbmajchkkmakajkjenkchhnhbadmhmk">Visual ARIA Chrome Extension</a>
                         </li>
                         <li>
-                            <a target="github" href="https://addons.mozilla.org/en-US/firefox/addon/visual-aria/">Firefox Plugin</a>
+                            <a target="ext" href="https://addons.mozilla.org/en-US/firefox/addon/visual-aria/">Visual ARIA Firefox Extension</a>
                         </li>
                         <li>
-                            <a target="github" href="https://github.com/AccDC/visual-aria">On GitHub</a>
+                            <a target="ext" href="https://github.com/AccDC/visual-aria">Visual ARIA on GitHub</a>
+                        </li>
+                        <li>
+                            <a target="ext" href="http://whatsock.com/training/matrices/">ARIA Role Conformance Matrices</a>
+                        </li>
+                        <li>
+                            <a target="ext" href="http://whatsock.com/training/">Accessibility Tree Training Guide</a>
                         </li>
                     </ul>
                 </div>
@@ -220,15 +227,15 @@ DC.remove(function() {
                     <ul class="list--horizontal">
                         <li>
                             Author and developer:
-                            <a target="github" href="https://www.linkedin.com/in/bgaraventa">Bryan Garaventa</a>
+                            <a target="ext" href="https://www.linkedin.com/in/bgaraventa">Bryan Garaventa</a>
                         </li>
                         <li>
                             Website designer:
-                            <a target="github" href="http://gericci.me/">Angela Ricci</a>
+                            <a target="ext" href="http://gericci.me/">Angela Ricci</a>
                         </li>
                         <li>
                             Style and markup editor:
-                            <a target="github" href="https://www.linkedin.com/in/laurence-lewis-77520365/">Laurence Lewis</a>
+                            <a target="ext" href="https://www.linkedin.com/in/laurence-lewis-77520365/">Laurence Lewis</a>
                         </li>
                     </ul>
                 </div>

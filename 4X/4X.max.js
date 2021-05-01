@@ -1,4 +1,4 @@
-/*!
+/*@license
 Apex 4X: The Comprehensive ARIA Development Suite (2021.1)
 Author: Bryan Garaventa (https://www.linkedin.com/in/bgaraventa)
 Home: WhatSock.com  :  Download: https://github.com/whatsock/apex
@@ -204,7 +204,7 @@ License: MIT (https://opensource.org/licenses/MIT)
   };
 
   $A.extend({
-    debug: true,
+    debug: false,
     parseDebug: function(e) {
       if ($A.debug) {
         throw e;
@@ -475,8 +475,18 @@ License: MIT (https://opensource.org/licenses/MIT)
         o = null;
       }
       if (!$A.isPlainObject(config)) config = {};
+      if ($A.isPath(o)) {
+        config = $A.extend(
+          {
+            fetch: $A.toFetch(o),
+            autoRender: true
+          },
+          config
+        );
+        o = null;
+      }
       if (o) o = $A.morph(o);
-      var ctrl = $A.isNode(o) && $A.getAttr(o, "controls");
+      var ctrl = $A.isNode(o) && $A.getAttr(o, "data-controls");
 
       if (config.fetch && config.fetch.url) {
         config.toggleHide = false;
@@ -548,8 +558,6 @@ License: MIT (https://opensource.org/licenses/MIT)
         DC.wrapper = DC.container = DC.content;
         DC.wrapperId = DC.containerId = DC.content.id;
       }
-
-      if (ctrl) $A.remAttr(o, ["controls"]);
 
       return DC;
     },
@@ -3894,7 +3902,6 @@ error: function(error, promise){}
               }
               dc.isRendered = false;
               dc.loaded = false;
-              if (dc.ariaControls) $A.remAttr(dc.triggerNode, "aria-controls");
               if (dc.toggleClassName)
                 $A.toggleClass(dc.triggerNode, dc.toggleClassName, false);
               dc.closing = false;
@@ -4301,7 +4308,6 @@ error: function(error, promise){}
         // append: false,
         // after: false,
 
-        // isTab: false,
         // autoRender: false,
         // lock: false,
         // mode: 0,
@@ -4371,7 +4377,7 @@ error: function(error, promise){}
           return dc;
         },
 
-        text: function() {
+        getText: function() {
           var dc = this;
           return $A.getText(dc.container);
         },
@@ -4734,6 +4740,7 @@ error: function(error, promise){}
       };
 
       $A.extend(dc, {
+        text: dc["getText"],
         getAttribute: dc["getAttr"],
         hasAttribute: dc["hasAttr"],
         removeAttribute: dc["remAttr"],
@@ -4858,7 +4865,8 @@ error: function(error, promise){}
     getActiveElements: $A["getActive"],
     setKeyboardA11Y: $A["setKBA11Y"],
     generateId: $A["genId"],
-    toTextNode: $A["toText"]
+    toTextNode: $A["toText"],
+    text: $A["getText"]
   });
 
   var announceString = function(strm, noRep, aggr, loop) {

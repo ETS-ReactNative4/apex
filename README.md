@@ -13,8 +13,8 @@ The DC (Dynamic Component) API provides  direct access to individually configura
 Usage
 -----
 
-# Place the 4X folder at the root of your website directory. The 4X folder should then be accessible from "www.YourDomain.com/4X".
-# Add the following script statement within the head of your page: `<script type="text/javascript" src="/4X/4X.js"></script>`
+* Place the 4X folder at the root of your website directory. The 4X folder should then be accessible from "www.YourDomain.com/4X".
+* Add the following script statement within the head of your page: `<script type="text/javascript" src="/4X/4X.js"></script>`
 
 After which, all of the $A API features will be available, including the full suite of ARIA development processes. These are fully documented within the help docs folder at: "Help/ARIA Development"
 
@@ -27,6 +27,20 @@ Any DOM element or markup string can be turned into a DC object using the follow
 ```
 var DC = $A.toDC(domElement, {
   // Optional DC API properties and methods here.
+});
+```
+
+Or even the following:
+
+```
+// Fetch an external control and convert it into a DC object to render with behavior declarations.
+var DC = $A.toDC("path/resource.php?params#ExternalElementId", {
+  root: 'body',
+  append: true,
+  forceFocus: true,
+  afterRender: function(DC) {
+    // Do something.
+  }
 });
 ```
 
@@ -53,6 +67,10 @@ By default, the 4X module folder is located at "/4X/Modules/", which is why the 
 If the 4X folder needs to be place somewhere else, such as at "/Subfolder/Path/4X", then it will be necessary to change the internal "moduleFolder" property in 4X.js to reference the correct module folder. E.G. Change it to "/Subfolder/Path/4X/Modules/".
 
 This will allow 4X to dynamically import required modules as needed to ensure proper functionality.
+
+As another option, all of the modules provided within this archive have been minified to maximize responsiveness and reduce load times as much as possible. All of these are located within the folder "4X/Min/". To automatically utilize these enhancements, simply reference the "Min" folder within the moduleFolder property instead of the "Modules" folder.
+
+Example: `moduleFolder: "/4X/Min/"`
 
 Importing Modules
 -----
@@ -103,7 +121,7 @@ Acknowledgements
 * Author and developer: Bryan Garaventa https://www.linkedin.com/in/bgaraventa
 * Website designer: Angela Ricci http://gericci.me
 * Style and markup editor: Laurence Lewis https://www.linkedin.com/in/laurence-lewis-77520365/  
-* Contributions by: Danny Allen http://dannya.com
+* Code contributor: Danny Allen http://dannya.com
 
 Project home:
 -----
