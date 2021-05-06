@@ -28,7 +28,7 @@ $A.import(["Animate", "Accordion"], { defer: true }, function() {
     animate: {
       onRender: function(dc, wrapper, next) {
         Velocity(wrapper, "transition.slideDownIn", {
-          duration: 1500,
+          duration: 800,
           complete: function() {
             // Running next() is required to continue executing built-in lifecycle methods such as afterRender() when the animation completes.
             next();
@@ -37,8 +37,8 @@ $A.import(["Animate", "Accordion"], { defer: true }, function() {
       },
       onRemove: function(dc, wrapper, next) {
         Velocity(wrapper, "transition.slideDownOut", {
-          delay: 500,
-          duration: 1500,
+          delay: 0,
+          duration: 0,
           complete: function() {
             // Running next() is required to continue executing built-in lifecycle methods such as afterRender() when the animation completes.
             next();

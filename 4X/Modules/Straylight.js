@@ -68,7 +68,8 @@ License: MIT (https://opensource.org/licenses/MIT)
                     style: { display: "none" },
                     animate: {
                       onRender: function(dc, wrapper, next) {
-                        Velocity(wrapper, "transition.slideLeftIn", {
+                        Velocity(wrapper, "transition.slideDownIn", {
+                          duration: 800,
                           complete: function() {
                             // Running next() is required to continue executing built-in lifecycle methods such as afterRender() when the animation completes.
                             next();
@@ -76,7 +77,9 @@ License: MIT (https://opensource.org/licenses/MIT)
                         });
                       },
                       onRemove: function(dc, wrapper, next) {
-                        Velocity(wrapper, "transition.slideLeftOut", {
+                        Velocity(wrapper, "transition.slideDownOut", {
+                          delay: 0,
+                          duration: 0,
                           complete: function() {
                             // Running next() is required to continue executing built-in lifecycle methods such as afterRender() when the animation completes.
                             next();
