@@ -41,8 +41,7 @@ License: MIT (https://opensource.org/licenses/MIT)
                 }),
                 call: function(props) {
                   $A.setAccordion(props.triggers, {
-                    toggleClassName: "open",
-                    isToggle: false,
+                    isToggle: true,
                     allowMultiple: false,
                     preload: true,
                     preloadImages: true,
@@ -65,28 +64,33 @@ License: MIT (https://opensource.org/licenses/MIT)
     },
 */
 
-                    style: { display: "none" },
-                    animate: {
-                      onRender: function(dc, wrapper, next) {
-                        Velocity(wrapper, "transition.slideDownIn", {
-                          duration: 800,
-                          complete: function() {
-                            // Running next() is required to continue executing built-in lifecycle methods such as afterRender() when the animation completes.
-                            next();
-                          }
-                        });
-                      },
-                      onRemove: function(dc, wrapper, next) {
-                        Velocity(wrapper, "transition.slideDownOut", {
-                          delay: 0,
-                          duration: 0,
-                          complete: function() {
-                            // Running next() is required to continue executing built-in lifecycle methods such as afterRender() when the animation completes.
-                            next();
-                          }
-                        });
-                      }
-                    },
+                    /* Uncomment to set animation effects.
+    style: { display: "none" },
+    animate: {
+      onRender: function(dc, wrapper, next) {
+        Velocity(wrapper, "transition.slideDownIn", {
+          duration: 1500,
+          complete: function() {
+            // Running next() is required to continue executing built-in lifecycle methods such as afterRender() when the animation completes.
+            next();
+          }
+        });
+      },
+      onRemove: function(dc, wrapper, next) {
+        Velocity(wrapper, "transition.slideDownOut", {
+          delay: 500,
+          duration: 1500,
+          complete: function() {
+            // Running next() is required to continue executing built-in lifecycle methods such as afterRender() when the animation completes.
+            next();
+          }
+        });
+      }
+    },
+*/
+
+                    toggleClassName: "open",
+
                     context: context
                   });
                 }
@@ -142,6 +146,7 @@ License: MIT (https://opensource.org/licenses/MIT)
                         preloadCSS: true,
                         toggleHide: true,
 
+                        /* Uncomment to set animation effects.
                         style: { display: "none" },
                         animate: {
                           onRender: function(dc, wrapper, next) {
@@ -164,6 +169,7 @@ License: MIT (https://opensource.org/licenses/MIT)
                             });
                           }
                         },
+*/
 
                         isToggle: false,
                         toggleClassName: "active"
