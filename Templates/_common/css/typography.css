@@ -2,8 +2,8 @@ main ul {
   margin-left: 3em;
 }
 
-main nav ul{
-  margin-left:0;
+main nav ul {
+  margin-left: 0;
 }
 
 main ul li {
@@ -25,9 +25,14 @@ main p {
 
 h1 {
   font-family: antonregular, Helvetica, Arial, sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   text-transform: capitalize;
   margin-bottom: 1.5em;
+}
+@media (min-width: 500px) {
+  h1 {
+    font-size: 1.8rem;
+  }
 }
 
 h1 strong {
@@ -55,7 +60,7 @@ h2 {
   color: var(--whatsock-black);
   font-family: Frutiger, Helvetica, Arial, sans-serif;
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1.2em;
 }

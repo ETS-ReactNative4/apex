@@ -2,8 +2,8 @@
 CalcNames: The AccName Computation Prototype, compute the Name and Description property values for a DOM node
 Returns an object with 'name' and 'desc' properties.
 Functionality mirrors the steps within the W3C Accessible Name and Description computation algorithm.
-http://www.w3.org/TR/accname-aam-1.1/
-Authored by Bryan Garaventa, plus refactoring contrabutions by Tobias Bengfort
+https://w3c.github.io/accname/
+Author: Bryan Garaventa
 https://github.com/whatsock/w3c-alternative-text-computation
 Distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -14,7 +14,7 @@ Distributed under the terms of the Open Source Initiative OSI - MIT License
     window[nameSpace] = {};
     nameSpace = window[nameSpace];
   }
-  nameSpace.getAccNameVersion = "2.55";
+  nameSpace.getAccNameVersion = "2.57";
   // AccName Computation Prototype
   nameSpace.getAccName = nameSpace.calcNames = function(
     node,
@@ -372,6 +372,32 @@ Plus roles extended for the Role Parity project.
                     ownedBy[node.id].target === node))
               );
 
+              // Check for non-empty value of aria-labelledby on current node, follow each ID ref, then stop and process no deeper.
+              if (!stop && !skipTo.tag && !skipTo.role && aLabelledby) {
+                ids = aLabelledby.split(/\s+/);
+                parts = [];
+                for (i = 0; i < ids.length; i++) {
+                  element = docO.getElementById(ids[i]);
+                  // Also prevent the current form field from having its value included in the naming computation if nested as a child of label
+                  parts.push(
+                    walk(element, true, skip, [node], element === refNode, {
+                      ref: ownedBy,
+                      top: element
+                    }).name
+                  );
+                }
+                // Check for blank value, since whitespace chars alone are not valid as a name
+                name = trim(parts.join(" "));
+
+                if (trim(name)) {
+                  hasName = true;
+                  hLabel = true;
+                  hasLabel = true;
+                  // Abort further recursion if name is valid.
+                  result.skip = true;
+                }
+              }
+
               // Check for non-empty value of aria-describedby/description if current node equals reference node, follow each ID ref, then stop and process no deeper.
               if (
                 !stop &&
@@ -402,32 +428,6 @@ Plus roles extended for the Role Parity project.
                 if (trim(desc)) {
                   result.desc = desc;
                   hasDesc = true;
-                }
-              }
-
-              // Check for non-empty value of aria-labelledby on current node, follow each ID ref, then stop and process no deeper.
-              if (!stop && !skipTo.tag && !skipTo.role && aLabelledby) {
-                ids = aLabelledby.split(/\s+/);
-                parts = [];
-                for (i = 0; i < ids.length; i++) {
-                  element = docO.getElementById(ids[i]);
-                  // Also prevent the current form field from having its value included in the naming computation if nested as a child of label
-                  parts.push(
-                    walk(element, true, skip, [node], element === refNode, {
-                      ref: ownedBy,
-                      top: element
-                    }).name
-                  );
-                }
-                // Check for blank value, since whitespace chars alone are not valid as a name
-                name = trim(parts.join(" "));
-
-                if (trim(name)) {
-                  hasName = true;
-                  hLabel = true;
-                  hasLabel = true;
-                  // Abort further recursion if name is valid.
-                  result.skip = true;
                 }
               }
 
@@ -681,32 +681,6 @@ Plus roles extended for the Role Parity project.
                     hasName = true;
                   }
                   skip = true;
-                }
-
-                var isFigure =
-                  !skipTo.tag &&
-                  !skipTo.role &&
-                  !hasName &&
-                  (nRole === "figure" || (!nRole && nTag === "figure"));
-
-                // Otherwise, if name is still empty and is a standard figure element with a non-empty associated figcaption element as the first or last child node, process caption with same naming computation algorithm.
-                // Plus do the same for role="figure" with embedded role="caption", or a combination of these.
-                if (isFigure) {
-                  fChild =
-                    firstChild(node, ["figcaption"], ["caption"]) ||
-                    lastChild(node, ["figcaption"], ["caption"]) ||
-                    false;
-                  if (fChild) {
-                    name = trim(
-                      walk(fChild, stop, false, [], false, {
-                        ref: ownedBy,
-                        top: fChild
-                      }).name
-                    );
-                  }
-                  if (trim(name)) {
-                    hasName = true;
-                  }
                 }
 
                 // Otherwise, if name is still empty and the root node and the current node are the same and node is an svg element, then parse the content of the title element to set the name and the desc element to set the description.

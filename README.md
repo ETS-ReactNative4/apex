@@ -1,22 +1,55 @@
-# apex
-Apex 4X: The Comprehensive ARIA Development Suite
+# Apex 4X
+The Comprehensive ARIA Development Suite (Current version: Virtual Light - 2021.1.6)
 
-Apex 4X
-===
+## Contents
++ [Introduction](#introduction)
++ [Accessible Widget Templates](#templates)
++ [4X APIs](#apis)
++ [Usage](#usage)
++ [Modules](#modules)
++ [ModuleUsage](#moduleusage)
++ [Importing Modules](#importing)
++ [Alternative Import Methods](#alternativeimports)
++ [Creating Modules](#creatingmodules)
++ [ReactJS Disambiguation](#reactjs)
++ [License](#license)
++ [Acknowledgements](#acknowledgements)
++ [Related Projects](#related)
++ [Change Log](#changelog)
 
-The release article is available on LinkedIn at:
- https://www.linkedin.com/pulse/released-apex-4x-comprehensive-aria-development-suite-bryan-garaventa
+<!----><a name="introduction" tabindex="-1"></a>
+## Introduction
 
 Apex 4X is a comprehensive ARIA development suite, including a core collection of powerful ARIA development utilities and functions, plus a full index of scalable ARIA design pattern templates. It also includes two APIs that are specifically designed to enhance and facilitate advanced ARIA development.
+
+ARIA stands for Accessible Rich Internet Applications, and is a technical specification published by the World Wide Web Consortium (W3C) Web Accessibility Initiative (WAI). The purpose, to map simulated web controls to equivalent control types on the platform Accessibility API, and to provide various mechanisms to enhance the accessibility of web technologies for people with disabilities.
+
+Apex 4X provides a comprehensive suite of ARIA related processes to make developing accessible technologies easier and more reliable and does not expose the accessibility layer where it can be casually changed by those who do not understand it. This makes it possible for developers who have no prior background in accessible development, to create and implement accessible web technologies for people with disabilities regardless.
+
+Release article: https://www.linkedin.com/pulse/released-apex-4x-comprehensive-aria-development-suite-bryan-garaventa
+
+Homepage: http://whatsock.com
+
+<!----><a name="templates" tabindex="-1"></a>
+## Accessible Widget Templates
+
+All of the following ARIA widget templates are available for immediate use. None of them require any prior knowledge of ARIA to implement.
+
+Accordions, Buttons, Carousels, Checkboxes, Comboboxes, Datepickers, Dialogs, Drag and Drop, Footnotes, Grids, Listboxes, Menus, Popups, Radios, Sliders, Switches, Tabs, Tooltips, and Trees.
+
+Live demos: http://whatsock.com/Templates
+
+<!----><a name="apis" tabindex="-1"></a>
+## 4X APIs
 
 The $A API provides all core functionality, including dynamic modularization for swappable components, advanced ARIA development features and processes, data management, DOM related methods and processes, dynamic import methods, visual effect methods for content display and animation, and chaining.
 
 The DC (Dynamic Component) API provides  direct access to individually configurable components and widgets. Each DC instance includes the ability to control dynamic behaviors, manage content and events, utilize lifecycle methods, pass custom props between other DC instances and external resources, control rendering processes, plus manage visual effects and animation.
 
-Usage
------
+<!----><a name="usage" tabindex="-1"></a>
+## Usage
 
-* Place the 4X folder at the root of your website directory. The 4X folder should then be accessible from "www.YourDomain.com/4X".
+* Place the 4X folder at the root of your website directory. The 4X folder should then be accessible from: `www.YourDomain.com/4X`
 * Add the following script statement within the head of your page: `<script type="text/javascript" src="/4X/4X.js"></script>`
 
 After which, all of the $A API features will be available, including the full suite of ARIA development processes. These are fully documented within the help docs folder at: "Help/ARIA Development"
@@ -53,8 +86,8 @@ For help regarding this, view the documentation at:
 "Help/$A API/DC Objects/", and 
 "Help/DC API".
 
-Modules
------
+<!----><a name="modules" tabindex="-1"></a>
+## Modules
 
 Dynamic modularization is one of the most powerful features that 4X provides, including on-demand imports, internal caching for shared modules, automatic queuing for sequential imports, shared props between modules within the same import scope, and optional deferment.
 
@@ -62,8 +95,8 @@ This makes it possible to dynamically import functionality modules on an as-need
 
 Custom props can also be passed from the originating import statement into all chained external modules, which are fully sandboxed within each module instance to ensure that no conflicts can occur, even when passing different props to the same module within differing import statements.
 
-Module Usage
------
+<!----><a name="moduleusage" tabindex="-1"></a>
+### Module Usage
 
 By default, the 4X module folder is located at "/4X/Modules/", which is why the 4X folder needs to be placed at the root of the website directory. However, this can be changed if a different location is necessary.
 
@@ -75,15 +108,15 @@ As another option, all of the modules provided within this archive have been min
 
 Example: `moduleFolder: "/4X/Min/"`
 
-Importing Modules
------
+<!----><a name="importing" tabindex="-1"></a>
+### Importing Modules
 
 All modules used by 4X should be added to the "4X/Modules/" folder. This allows any module saved in this location to be imported using its file name alone. When importing a JS file, it is not necessary to add the .js extension. However, when importing a CSS file, the extension is needed to differentiate implicit JS files from explicit CSS files.
 
 To better understand dynamic importing, view the help documentation at: "/Help/$A API/Import and Fetch APIs/Import.txt".
 
-Alternative Import Methods
------
+<!----><a name="alternativeimports" tabindex="-1"></a>
+### Alternative Import Methods
 
 It is also possible to import any number of modules using the website script tag using the src attribute.
 
@@ -95,8 +128,8 @@ This technique supports the "async" script loading feature to maximize page load
 <script async type="text/javascript" src="/4X/4X.js#ModuleName1,ModuleName2,Etc"></script>
 ```
 
-Creating Modules
------
+<!----><a name="creatingmodules" tabindex="-1"></a>
+### Creating Modules
 
 There is no required syntax for creating a standalone module. Any properly coded JavaScript file can become a module import as-needed using the $A.import() statement.
 
@@ -106,15 +139,8 @@ For example, the props object is required to be passed down to all imported modu
 
 For more information regarding props, view the help file at: "Help/$A API/Import and Fetch APIs/Props"
 
-Widget Templates
------
-
-All of the following ARIA widget templates are available for immediate use. None of them require any prior knowledge of ARIA to implement.
-
-Accordions, Buttons, Checkboxes, Comboboxes, Datepickers, Dialogs, Footnotes, Listboxes, Menus, Popups, Radios, Switches, Tabs, Tooltips, and Trees.
-
-ReactJS Disambiguation
------
+<!----><a name="reactjs" tabindex="-1"></a>
+## ReactJS Disambiguation
 
 Those familiar with React development will notice certain concept and keyword similarities within 4X. This was done deliberately to make it possible for developers to instantly understand the concept of what property or feature is being referenced, especially when the keyword or concept has a direct intuitive meaning that can be easily understood by itself. There are also some unintentional similarities as well. It is important to note, however, that 4X is not a ReactJS project, and has no external dependencies.
 
@@ -130,25 +156,35 @@ To summarize, 4X is not a ReactJS project, nor does it include any code from Rea
 
 Regarding other JavaScript libraries and frameworks, 4X is sandboxed within its own namespace, and should have no difficulties running alongside any other library or framework, as long as these resources are not programmed to control the same elements in similar ways when executed.
 
-License
------
+<!----><a name="license" tabindex="-1"></a>
+## License
 
 Apex 4X including all template design patterns is distributed under the terms of the Open Source Initiative OSI - MIT License, and may be freely used for any purpose within any web technology.
 
-Acknowledgements
------
+<!----><a name="acknowledgements" tabindex="-1"></a>
+## Acknowledgements
 
 * Author and developer: Bryan Garaventa https://www.linkedin.com/in/bgaraventa
 * Website designer: Angela Ricci http://gericci.me
 * Style and markup editor: Laurence Lewis https://www.linkedin.com/in/laurence-lewis-77520365/  
 * Code contributor: Danny Allen http://dannya.com
 
-Project home:
------
-
-http://whatsock.com
-
-Related projects:
------
+<!----><a name="related" tabindex="-1"></a>
+## Related projects
 
 https://github.com/whatsock
+
+<!----><a name="changelog" tabindex="-1"></a>
+## Change log:
+
+2021.1.6 (Virtual Light): Added $A.nearestHeadingLevel() and DC.nearestHeadingLevel() as an ARIA support function that will return the level number of the nearest heading. View Help/ARIA Development/NearestHeadingLevel for support.
+
+2021.1.5 (Broken Angels): Reconfigured internal event handling object locale to better accomidate external testing frameworks.
+
+2021.1.4 (Mona Lisa Overdrive): Added CSS offset aliases for width, height, top, and left for shorthand computation of common element rendering properties.
+
+2021.1.3 (Snow Crash): Added all available touch events as DC overrides, and fixed a small bug in the Get() method to prevent null reference errors at runtime.
+
+2021.1.2 (Altered Carbon): Fixed the expected behavior for toggled DC objects within 4X.
+
+2021.1.1 (Burning Chrome): Initial public release.

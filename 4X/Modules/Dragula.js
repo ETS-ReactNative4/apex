@@ -1,3 +1,10 @@
+/*@license
+Dragula https://github.com/bevacqua/dragula
+Author: Nicolas Bevacqua
+License: MIT (https://opensource.org/licenses/MIT)
+Includes modifications by Bryan Garaventa for use within the Apex 4X ARIA Drag module.
+*/
+
 (function(f) {
   if (typeof exports === "object" && typeof module !== "undefined") {
     module.exports = f();
@@ -265,7 +272,7 @@
                   e.clientX !== void 0 &&
                   Math.abs(e.clientX - _moveX) <= (o.slideFactorX || 0) &&
                   e.clientY !== void 0 &&
-                    Math.abs(e.clientY - _moveY) <= (o.slideFactorY || 0)
+                  Math.abs(e.clientY - _moveY) <= (o.slideFactorY || 0)
                 ) {
                   return;
                 }
@@ -349,6 +356,8 @@
 
               function start(context) {
                 if (isCopy(context.item, context.source)) {
+                  // Modified for accessibility support using Apex 4X.
+                  drake.emit("beforeClone", context.item);
                   _copy = context.item.cloneNode(true);
                   drake.emit("cloned", _copy, context.item, "copy");
                 }
@@ -401,7 +410,8 @@
                 if (
                   dropTarget &&
                   ((_copy && o.copySortSource) ||
-                    !_copy || dropTarget !== _source)
+                    !_copy ||
+                    dropTarget !== _source)
                 ) {
                   drop(item, dropTarget);
                 } else if (o.removeOnSpill) {
@@ -621,6 +631,8 @@
                   return;
                 }
                 var rect = _item.getBoundingClientRect();
+                // Modified for accessibility support using Apex 4X.
+                drake.emit("beforeClone", _item);
                 _mirror = _item.cloneNode(true);
                 _mirror.style.width = getRectWidth(rect) + "px";
                 _mirror.style.height = getRectHeight(rect) + "px";
