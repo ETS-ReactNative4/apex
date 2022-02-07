@@ -1,4 +1,4 @@
-$A.import(["Animate", "Accordion"], { defer: true }, function() {
+$A.import(["../../../4X/Modules/Animate" , "../../../4X/Modules/Accordion"], { defer: true }, function() {
   $A.setAccordion(".aria-accordion-trigger", {
     toggleHide: true,
     isToggle: true,
@@ -25,7 +25,7 @@ $A.import(["Animate", "Accordion"], { defer: true }, function() {
     animate: {
       onRender: function(dc, wrapper, next) {
         Velocity(wrapper, "transition.slideDownIn", {
-          duration: 800,
+          duration: 1500,
           complete: function() {
             // Running next() is required to continue executing built-in lifecycle methods such as afterRender() when the animation completes.
             next();
@@ -34,8 +34,8 @@ $A.import(["Animate", "Accordion"], { defer: true }, function() {
       },
       onRemove: function(dc, wrapper, next) {
         Velocity(wrapper, "transition.slideDownOut", {
-          delay: 0,
-          duration: 0,
+          delay: 500,
+          duration: 1500,
           complete: function() {
             // Running next() is required to continue executing built-in lifecycle methods such as afterRender() when the animation completes.
             next();
